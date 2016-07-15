@@ -29,8 +29,10 @@ open grpc_helloworld.sln
 build solution
 run server.exe and client.exe
 
+
 #Use grpc
-Install Nuget Package
+
+##Install Nuget Package
 ```
 grpc.dependencies.openssl
 grpc.dependencies.openssl.redist
@@ -38,7 +40,7 @@ grpc.dependencies.zlib
 grpc.dependencies.zlib.redist
 ```
 
-Example include or link lib
+##Example include or link lib
 ```
 grpc_helloworld\projects\lib_debug.props
 grpc_helloworld\projects\lib_release.props
