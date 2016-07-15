@@ -12,3 +12,5 @@ set protoc_path=%path%\..\grpc\bin\protobuf\release
 
 %protoc_path%\protoc.exe helloworld.proto --cpp_out=%output_client_path% --proto_path=.\
 %protoc_path%\protoc.exe helloworld.proto --cpp_out=%output_server_path% --proto_path=.\
+
+popd
