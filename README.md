@@ -6,7 +6,9 @@ Build gRPC on Windows x64
 
 #Requirements
 [Git](https://git-scm.com)
+
 [CMake](https://cmake.org/)
+
 Visual Studio 2015
 
 #Build on windows
@@ -24,11 +26,12 @@ grpc\bin\protobuf\release
 ```
 
 #Test grpc_helloworld
+```
 run test_protoc.bat
 open grpc_helloworld.sln
 build solution
 run server.exe and client.exe
-
+```
 
 #Use grpc
 
