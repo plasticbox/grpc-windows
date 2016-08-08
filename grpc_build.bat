@@ -22,10 +22,12 @@ robocopy .\x64\Release\ ..\bin\protobuf\debug\ /XF *.lib *.iobj *.ipdb
 robocopy .\x64\Release\ ..\bin\protobuf\release /XF *.lib *.iobj *.ipdb
 
 devenv.com grpc.sln /build "Debug|x64" /project grpc++
+devenv.com grpc.sln /build "Debug|x64" /project grpc++_unsecure
 if not %ERRORLEVEL% == 0 goto Finish
 robocopy /mir .\x64\Debug ..\bin\grpc\debug
 
 devenv.com grpc.sln /build "Release|x64" /project grpc++
+devenv.com grpc.sln /build "Release|x64" /project grpc++_unsecure
 if not %ERRORLEVEL% == 0 goto Finish
 robocopy /mir .\x64\release ..\bin\grpc\release /XF *grpc_cpp_plugin*
 
