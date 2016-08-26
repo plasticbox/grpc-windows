@@ -6,6 +6,7 @@ echo #### grpc clone start!
 echo #### git clone
 git clone https://github.com/grpc/grpc
 cd grpc
+git checkout tags/v1.0.0
 git submodule update --init
 cd ..
 
