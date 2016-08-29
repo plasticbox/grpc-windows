@@ -5,8 +5,29 @@ call "%VS140COMNTOOLS%..\..\VC\vcvarsall.bat" amd64
 
 echo #### grpc build start!
 
+mkdir grpc\bin\zlib
+mkdir grpc\bin\zlib\debug
+mkdir grpc\bin\zlib\release
+
+cd grpc\third_party\zlib
+mkdir build & cd build
+mkdir debug & cd debug
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../../../../bin/zlib/debug ../..
+nmake & nmake install
+
+cd ..
+mkdir release & cd release
+cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../../bin/zlib/release ../..
+nmake & nmake install
+
+cd ../../../../bin/zlib/release
+set PATH=%PATH%;%cd%\bin
+
+popd 
+pushd %~dp0
+
 cd grpc\third_party\protobuf\cmake
-cmake -G "Visual Studio 14 2015 Win64" -Dprotobuf_BUILD_TESTS=OFF
+cmake -G "Visual Studio 14 2015 Win64" -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=ON
 devenv.com protobuf.sln /build "Debug|x64" /project ALL_BUILD
 if not %ERRORLEVEL% == 0 goto Finish
 robocopy /mir .\Debug ..\..\..\bin\protobuf\debug
