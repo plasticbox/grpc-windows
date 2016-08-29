@@ -31,6 +31,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 }  // namespace
 
 
+void protobuf_AssignDesc_helloworld_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AssignDesc_helloworld_2eproto() {
   protobuf_AddDesc_helloworld_2eproto();
   const ::google::protobuf::FileDescriptor* file =
@@ -77,6 +78,7 @@ inline void protobuf_AssignDescriptorsOnce() {
                  &protobuf_AssignDesc_helloworld_2eproto);
 }
 
+void protobuf_RegisterTypes(const ::std::string&) GOOGLE_ATTRIBUTE_COLD;
 void protobuf_RegisterTypes(const ::std::string&) {
   protobuf_AssignDescriptorsOnce();
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
@@ -94,6 +96,7 @@ void protobuf_ShutdownFile_helloworld_2eproto() {
   delete HelloReply_reflection_;
 }
 
+void protobuf_AddDesc_helloworld_2eproto() GOOGLE_ATTRIBUTE_COLD;
 void protobuf_AddDesc_helloworld_2eproto() {
   static bool already_here = false;
   if (already_here) return;
@@ -122,16 +125,6 @@ struct StaticDescriptorInitializer_helloworld_2eproto {
     protobuf_AddDesc_helloworld_2eproto();
   }
 } static_descriptor_initializer_helloworld_2eproto_;
-
-namespace {
-
-static void MergeFromFail(int line) GOOGLE_ATTRIBUTE_COLD;
-static void MergeFromFail(int line) {
-  GOOGLE_CHECK(false) << __FILE__ << ":" << line;
-}
-
-}  // namespace
-
 
 // ===================================================================
 
@@ -268,8 +261,8 @@ void HelloRequest::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:helloworld.HelloRequest)
 }
 
-::google::protobuf::uint8* HelloRequest::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* HelloRequest::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:helloworld.HelloRequest)
   // optional string name = 1;
   if (this->name().size() > 0) {
@@ -305,7 +298,9 @@ int HelloRequest::ByteSize() const {
 
 void HelloRequest::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:helloworld.HelloRequest)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
   const HelloRequest* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const HelloRequest>(
           &from);
@@ -320,7 +315,9 @@ void HelloRequest::MergeFrom(const ::google::protobuf::Message& from) {
 
 void HelloRequest::MergeFrom(const HelloRequest& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:helloworld.HelloRequest)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
   if (from.name().size() > 0) {
 
     name_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.name_);
@@ -548,8 +545,8 @@ void HelloReply::SerializeWithCachedSizes(
   // @@protoc_insertion_point(serialize_end:helloworld.HelloReply)
 }
 
-::google::protobuf::uint8* HelloReply::SerializeWithCachedSizesToArray(
-    ::google::protobuf::uint8* target) const {
+::google::protobuf::uint8* HelloReply::InternalSerializeWithCachedSizesToArray(
+    bool deterministic, ::google::protobuf::uint8* target) const {
   // @@protoc_insertion_point(serialize_to_array_start:helloworld.HelloReply)
   // optional string message = 1;
   if (this->message().size() > 0) {
@@ -585,7 +582,9 @@ int HelloReply::ByteSize() const {
 
 void HelloReply::MergeFrom(const ::google::protobuf::Message& from) {
 // @@protoc_insertion_point(generalized_merge_from_start:helloworld.HelloReply)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
   const HelloReply* source = 
       ::google::protobuf::internal::DynamicCastToGenerated<const HelloReply>(
           &from);
@@ -600,7 +599,9 @@ void HelloReply::MergeFrom(const ::google::protobuf::Message& from) {
 
 void HelloReply::MergeFrom(const HelloReply& from) {
 // @@protoc_insertion_point(class_specific_merge_from_start:helloworld.HelloReply)
-  if (GOOGLE_PREDICT_FALSE(&from == this)) MergeFromFail(__LINE__);
+  if (GOOGLE_PREDICT_FALSE(&from == this)) {
+    ::google::protobuf::internal::MergeFromFail(__FILE__, __LINE__);
+  }
   if (from.message().size() > 0) {
 
     message_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.message_);
