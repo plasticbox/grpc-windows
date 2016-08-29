@@ -23,7 +23,7 @@ nmake & nmake install
 cd ../../../../bin/zlib/release
 set PATH=%PATH%;%cd%\bin
 
-popd 
+popd
 pushd %~dp0
 
 cd grpc\third_party\protobuf\cmake
@@ -37,7 +37,7 @@ if not %ERRORLEVEL% == 0 goto Finish
 robocopy /mir .\Release ..\..\..\bin\protobuf\release
 
 cd ..\..\..\vsprojects
-devenv.com grpc_protoc_plugins.sln /build "Release|x64" /project grpc_cpp_plugin
+devenv.com grpc_protoc_plugins.sln /build "Release|x64"
 if not %ERRORLEVEL% == 0 goto Finish
 robocopy .\x64\Release\ ..\bin\protobuf\debug\ /XF *.lib *.iobj *.ipdb
 robocopy .\x64\Release\ ..\bin\protobuf\release /XF *.lib *.iobj *.ipdb
