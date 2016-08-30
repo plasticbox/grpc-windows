@@ -39,9 +39,11 @@ robocopy /mir .\Release ..\..\..\bin\protobuf\release
 cd ..\..\..\vsprojects
 devenv.com grpc_protoc_plugins.sln /build "Release|x64"
 if not %ERRORLEVEL% == 0 goto Finish
-robocopy .\x64\Release\ ..\bin\protobuf\debug\ /XF *.lib *.iobj *.ipdb
-robocopy .\x64\Release\ ..\bin\protobuf\release /XF *.lib *.iobj *.ipdb
+robocopy .\x64\Release\ ..\bin\grpc_protoc_plugins\ /XF *.lib *.iobj *.ipdb
+devenv.com grpc_protoc_plugins.sln /clean "Release|x64"
 
+devenv.com grpc.sln /clean "Debug"
+devenv.com grpc.sln /clean "Release"
 devenv.com grpc.sln /build "Debug|x64" /project grpc++
 devenv.com grpc.sln /build "Debug|x64" /project grpc++_unsecure
 if not %ERRORLEVEL% == 0 goto Finish
@@ -50,7 +52,19 @@ robocopy /mir .\x64\Debug ..\bin\grpc\debug
 devenv.com grpc.sln /build "Release|x64" /project grpc++
 devenv.com grpc.sln /build "Release|x64" /project grpc++_unsecure
 if not %ERRORLEVEL% == 0 goto Finish
-robocopy /mir .\x64\release ..\bin\grpc\release /XF *grpc_cpp_plugin*
+robocopy /mir .\x64\Release ..\bin\grpc\release /XF *grpc_cpp_plugin*
+
+devenv.com grpc.sln /clean "Debug"
+devenv.com grpc.sln /clean "Release"
+devenv.com grpc.sln /build "Debug-DLL|x64" /project grpc++
+devenv.com grpc.sln /build "Debug-DLL|x64" /project grpc++_unsecure
+if not %ERRORLEVEL% == 0 goto Finish
+robocopy /mir .\x64\Debug-DLL ..\bin\grpc\debug_dll
+
+devenv.com grpc.sln /build "Release-DLL|x64" /project grpc++
+devenv.com grpc.sln /build "Release-DLL|x64" /project grpc++_unsecure
+if not %ERRORLEVEL% == 0 goto Finish
+robocopy /mir .\x64\Release-DLL ..\bin\grpc\release_dll /XF *grpc_cpp_plugin*
 
 echo #### grpc build done!
 
