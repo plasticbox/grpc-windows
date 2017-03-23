@@ -27,16 +27,18 @@ popd
 pushd %~dp0
 
 cd grpc\third_party\protobuf\cmake
-cmake -G "Visual Studio 14 2015 Win64" -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=ON
+mkdir build & cd build
+mkdir solution & cd solution
+cmake -G "Visual Studio 14 2015 Win64" -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=ON ../..
 devenv.com protobuf.sln /build "Debug|x64" /project ALL_BUILD
 if not %ERRORLEVEL% == 0 goto Finish
-robocopy /mir .\Debug ..\..\..\bin\protobuf\debug
+robocopy /mir .\Debug ..\..\..\..\..\bin\protobuf\debug
 
 devenv.com protobuf.sln /build "Release|x64" /project ALL_BUILD
 if not %ERRORLEVEL% == 0 goto Finish
-robocopy /mir .\Release ..\..\..\bin\protobuf\release
+robocopy /mir .\Release ..\..\..\..\..\bin\protobuf\release
 
-cd ..\..\..\vsprojects
+cd ..\..\..\..\..\vsprojects
 devenv.com grpc_protoc_plugins.sln /build "Release|x64"
 if not %ERRORLEVEL% == 0 goto Finish
 robocopy .\x64\Release\ ..\bin\grpc_protoc_plugins\ /XF *.lib *.iobj *.ipdb
