@@ -14,17 +14,20 @@ echo #### grpc build start!
 
 set devenv=devenv
 
+rmdir grpc\bin\zlib /s /q
 mkdir grpc\bin\zlib
 mkdir grpc\bin\zlib\debug
 mkdir grpc\bin\zlib\release
 
 cd grpc\third_party\zlib
+rmdir build /s /q
 mkdir build & cd build
 mkdir debug & cd debug
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_INSTALL_PREFIX=../../../../bin/zlib/debug ../..
 nmake & nmake install
 
 cd ..
+rmdir release /s /q
 mkdir release & cd release
 cmake -G "NMake Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../../../../bin/zlib/release ../..
 nmake & nmake install
@@ -36,7 +39,9 @@ popd
 pushd "%~dp0"
 
 cd grpc\third_party\protobuf\cmake
+rmdir build /s /q
 mkdir build & cd build
+rmdir solution /s /q
 mkdir solution & cd solution
 cmake -G "Visual Studio 14 2015 Win64" -Dprotobuf_BUILD_TESTS=OFF -Dprotobuf_WITH_ZLIB=ON ../..
 "%devenv%" protobuf.sln /build "Debug|x64" /project ALL_BUILD
