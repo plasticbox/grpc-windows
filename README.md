@@ -1,4 +1,7 @@
 > **May 2019** **NOTE:** Project is no longer under active development, I definitely recommend using [vcpkg](https://github.com/microsoft/vcpkg)
+```
+vcpkg install grpc
+```
 
 # grpc-windows
 Build gRPC on Windows x64
